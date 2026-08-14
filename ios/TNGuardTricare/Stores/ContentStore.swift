@@ -10,9 +10,10 @@ final class ContentStore: ObservableObject {
     @Published private(set) var isRefreshing = false
     @Published private(set) var lastRefreshError: String?
 
-    /// Set this to a hosted raw JSON URL to enable remote content updates. Left nil until
-    /// Milestone 3 hosting is set up; the app works fully offline on the bundled copy either way.
-    private let remoteURL: URL? = nil
+    /// Hosted on GitHub — edit content/content.json in the tn-guard-tricare repo (bump
+    /// contentVersion) and installed apps pick it up on next launch/refresh, no App Store
+    /// release needed. Falls back to the bundled copy if this is ever unreachable.
+    private let remoteURL: URL? = URL(string: "https://raw.githubusercontent.com/mpperrusquia-ui/tn-guard-tricare/main/content/content.json")
 
     private var cacheURL: URL {
         FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]

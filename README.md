@@ -7,13 +7,17 @@ including filling and sharing the required forms.
 
 ## Status
 
-- **iOS**: Milestone 1 in progress — SwiftUI app with the full feature set
-  (Home dashboard, TRS flow, TN Reimbursement flow with in-app PDF form fill,
-  Resources/FAQ, Settings, disclaimer). Uses a synthesized placeholder PDF
-  template for the attestation/W-4 forms until the official tn.gov PDFs are
-  bundled (see Risks in the plan / `docs/CONTENT_UPDATE_GUIDE.md`).
-- **Android**: not started (Milestone 2, planned as a Kotlin/Jetpack Compose
-  port of the iOS app once the iOS reference implementation is verified).
+- **iOS**: feature-complete for the core flows — Home dashboard, TRS flow
+  (in-app browser to milConnect/BWE), TN Reimbursement flow with real
+  government PDF form filling (Medical Readiness Act Enrollment + Attestation
+  from the official state packet, plus the real 2026 IRS W-4), Resources/FAQ,
+  Settings, disclaimer, app icon. OTA content updates are live via this repo
+  (see `docs/CONTENT_UPDATE_GUIDE.md`). Not yet done: on-device testing (only
+  verified in Simulator), automated tests, accessibility pass, and actual App
+  Store submission (needs a human at the keyboard for Xcode/App Store Connect
+  sign-in — see below).
+- **Android**: not started — planned as a Kotlin/Jetpack Compose port of the
+  iOS app.
 
 ## Repo layout
 

@@ -4,6 +4,12 @@ All links, premiums, deadlines, phone numbers, eligibility copy, and form
 field definitions live in one file: [`content/content.json`](../content/content.json),
 documented by [`content/content.schema.json`](../content/content.schema.json).
 
+OTA hosting is live: the iOS app fetches
+[`https://raw.githubusercontent.com/mpperrusquia-ui/tn-guard-tricare/main/content/content.json`](https://raw.githubusercontent.com/mpperrusquia-ui/tn-guard-tricare/main/content/content.json)
+in the background on every launch (see `remoteURL` in
+`ios/TNGuardTricare/Stores/ContentStore.swift`), falling back silently to the
+bundled copy if that's ever unreachable.
+
 ## Making an edit
 
 1. Edit `content/content.json`.
@@ -13,53 +19,60 @@ documented by [`content/content.schema.json`](../content/content.schema.json).
 3. Copy the updated file into each platform's bundled-fallback location so a
    fresh install always has current data even before its first network fetch:
    - iOS: `ios/TNGuardTricare/Resources/Content/content.json`
-   - Android (Milestone 2): `android/app/src/main/assets/content.json`
-4. If you host `content.json` remotely (recommended — see below), upload the
-   updated file there too. That's what makes the update reach installed apps
-   without an App Store/Play Store release.
-
-## Hosting content.json for over-the-air updates
-
-The simplest option: put `content/content.json` in a public GitHub repo and
-reference its raw URL, e.g.
-`https://raw.githubusercontent.com/<org>/<repo>/main/content/content.json`.
-Any commit to that file updates the content the next time an installed app
-fetches it (on launch, or via Settings → "Check for content updates").
-
-To wire this up:
-- iOS: set `remoteURL` in `ios/TNGuardTricare/Stores/ContentStore.swift` to
-  the hosted URL (currently `nil`, so the app only uses the bundled copy).
-- Android (Milestone 2): equivalent constant in the Kotlin `ContentRepository`.
-
-A small static host (S3, Firebase Hosting, GitHub Pages) works just as well
-and avoids depending on GitHub's raw-content CDN for production traffic.
+   - Android (not yet built): `android/app/src/main/assets/content.json`
+4. Commit and push to `main` on GitHub. That's the whole release — no App
+   Store build, no review. Installed apps pick it up next launch, or
+   immediately via Settings → "Check for content updates".
 
 ## Adding or changing a form field
 
 Each entry in `tnReimbursement.forms[].fields` drives both the in-app input
-UI and the PDF fill step — add a field there (with a unique `id` and the PDF's
-real AcroForm field name as `pdfFieldName`) and it will automatically appear
-in the form screen and get written into the generated PDF. Set `sensitive:
-true` for anything that should be Keychain-only (SSN, bank routing/account
-numbers, DoD ID) rather than stored in a plain file.
+UI and the PDF fill step. Two fill modes, set per form via `fillMode`:
 
-## Swapping in the real official PDF templates
+- **`"acroform"`** (Enrollment, W-4): the bundled PDF has real interactive
+  fields. Set each field's `pdfFieldName` to the PDF's actual AcroForm field
+  name — `PDFFormFiller.swift` matches it across every page (handles both
+  flat names and the fully-qualified dotted names XFA-style forms like the
+  W-4 use) and calls the standard PDFKit fill API. `type: "choice"` fields
+  need an `options` array whose values are the PDF's exact export strings
+  (e.g. Branch's real options are `["ARNG", "ANG", "STATE GUARD"]`) —
+  inspect a form's real fields/options with pypdf before wiring one up:
+  `PdfReader(path).get_fields()` and `field.get('/Opt')`.
+- **`"overlay"`** (Attestation): the bundled PDF page is real but flat/
+  non-interactive (just printed text with blank lines) — there's nothing to
+  set programmatically, so the app draws entered values as plain text on top
+  of the real page. Each field needs `overlays: [{page, x, y}]` (top-left
+  origin points; `x`/`y` are where to draw), or for a `"choice"` field,
+  `overlayOptions: [{value, page, x, y}]` (draws an "X" for whichever option
+  matches). Get exact coordinates with `pdfplumber`:
+  `page.extract_words()` returns each blank line's `x0`/`top` directly in
+  this same coordinate space — use the blank's own `(x0, top)` as the draw
+  anchor.
 
-`tnReimbursement.forms[].pdfTemplate` names a file expected at
-`ios/TNGuardTricare/Resources/Forms/<pdfTemplate>` (and the Android
-equivalent in Milestone 2). Until the real fillable PDFs from tn.gov are
-added there, the app synthesizes an equivalent placeholder template on-device
-(see `PDFFormFiller.swift`) so the fill → preview → share flow works today.
-To switch to the real form:
+Set `sensitive: true` on any field that should be Keychain-only (SSN, bank
+routing/account numbers) rather than stored in a plain file.
 
-1. Download the official PDF (attestation / W-4) from the links in
-   `tnReimbursement.links`.
-2. Confirm it's a fillable AcroForm (open in Preview/Acrobat and check for
-   fillable fields). If it isn't, it'll need OCR/redesign work — flag that
-   rather than silently keeping the placeholder.
-3. Rename its form fields (or note their existing names) so each one matches
-   the `pdfFieldName` values in `content.json`, or update `pdfFieldName` to
-   match the real PDF's field names instead.
-4. Add the PDF file to `Resources/Forms/` under the exact `pdfTemplate` name.
-5. Set `isPlaceholderTemplate` to `false` (or remove it) for that form in
-   `content.json` so the in-app "placeholder" warning banner goes away.
+`outputPage` (0-based) trims the shared PDF down to just that one page when
+the bundled file has other enclosures/instructions bundled alongside it
+(e.g. the TN packet is 3 pages; Enrollment and Attestation each only want
+their own page in the file the user actually sends). Leave it unset to keep
+the whole bundled document, e.g. the W-4's legitimate IRS instruction pages.
+
+## Adding a new real PDF template
+
+1. Get the official PDF and inspect it with pypdf (see above) to determine
+   whether it's a real fillable AcroForm or a flat page.
+2. Add it to `Resources/Forms/<name>.pdf` and reference that filename as
+   `pdfTemplate` in `content.json`.
+3. Wire up `fillMode` and each field's `pdfFieldName` (acroform) or
+   `overlays`/`overlayOptions` (overlay) as above.
+4. Remove `isPlaceholderTemplate` (or set it `false`) — that flag only
+   controls the in-app "this is a placeholder" warning banner.
+5. **Verify against Apple's actual PDFKit rendering**, not just that the code
+   runs — this project has already hit two rendering bugs (freshly-built
+   annotations don't get an appearance stream regenerated; combo/choice
+   fields need real AcroForm backing) that only showed up when the output
+   was actually opened in Preview, not from the fill code "succeeding."
+   A quick way to check without going through the Simulator: a standalone
+   `swift` script importing `PDFKit`/`AppKit` on macOS, using
+   `PDFPage.thumbnail(of:for:)` to render straight to a PNG.
