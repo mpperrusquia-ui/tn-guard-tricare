@@ -1,0 +1,145 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TN Guard Tricare Helper Content",
+  "description": "Single source of truth for all copy, links, premiums, deadlines, phone numbers, and FAQ content shown in the iOS and Android apps. Edit this file (or the hosted copy referenced by ContentStore/ContentRepository) to update the app without a store release. Bump `contentVersion` on every edit.",
+  "type": "object",
+  "required": ["contentVersion", "updatedAt", "trs", "tnReimbursement", "faq", "disclaimer"],
+  "properties": {
+    "contentVersion": { "type": "integer", "description": "Increment on every edit. Shown in Settings so users/admins can confirm they have the latest content." },
+    "updatedAt": { "type": "string", "format": "date", "description": "ISO date this file was last edited." },
+    "trs": {
+      "type": "object",
+      "description": "TRICARE Reserve Select federal enrollment content.",
+      "required": ["premiums", "links", "phoneNumbers", "eligibility", "steps"],
+      "properties": {
+        "premiums": {
+          "type": "object",
+          "properties": {
+            "memberOnlyMonthly": { "type": "string" },
+            "memberAndFamilyMonthly": { "type": "string" },
+            "asOfYear": { "type": "integer" }
+          }
+        },
+        "links": {
+          "type": "object",
+          "properties": {
+            "milconnect": { "type": "string" },
+            "bwe": { "type": "string" },
+            "trsOverview": { "type": "string" },
+            "trsEnrollmentSteps": { "type": "string" },
+            "formsPage": { "type": "string" },
+            "whenCoverageBegins": { "type": "string" },
+            "costs": { "type": "string" },
+            "handbook": { "type": "string" },
+            "eastRegion": { "type": "string" },
+            "humanaMilitary": { "type": "string" },
+            "findDoctor": { "type": "string" }
+          }
+        },
+        "phoneNumbers": {
+          "type": "object",
+          "properties": {
+            "humanaEastLabel": { "type": "string" },
+            "humanaEast": { "type": "string" },
+            "triWestLabel": { "type": "string" },
+            "triWest": { "type": "string" }
+          }
+        },
+        "eligibility": { "type": "array", "items": { "type": "string" } },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "title", "body"],
+            "properties": {
+              "id": { "type": "string" },
+              "title": { "type": "string" },
+              "body": { "type": "string" },
+              "actionLabel": { "type": "string" },
+              "actionLinkKey": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "tnReimbursement": {
+      "type": "object",
+      "required": ["email", "monthlyDeadlineRule", "links", "eligibility", "steps", "forms"],
+      "properties": {
+        "email": { "type": "string" },
+        "monthlyDeadlineRule": { "type": "string" },
+        "links": {
+          "type": "object",
+          "properties": {
+            "programPage": { "type": "string" },
+            "policyPdf": { "type": "string" },
+            "enrollmentPacketPdf": { "type": "string" },
+            "w4Pdf": { "type": "string" }
+          }
+        },
+        "eligibility": { "type": "array", "items": { "type": "string" } },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "title", "body"],
+            "properties": {
+              "id": { "type": "string" },
+              "title": { "type": "string" },
+              "body": { "type": "string" }
+            }
+          }
+        },
+        "forms": {
+          "type": "array",
+          "description": "Drives the dynamic in-app fill forms and PDF field mapping.",
+          "items": {
+            "type": "object",
+            "required": ["id", "title", "description", "pdfTemplate", "fields"],
+            "properties": {
+              "id": { "type": "string" },
+              "title": { "type": "string" },
+              "description": { "type": "string" },
+              "pdfTemplate": { "type": "string", "description": "Bundled PDF filename in Forms/." },
+              "isPlaceholderTemplate": { "type": "boolean" },
+              "fields": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["id", "label", "type", "pdfFieldName"],
+                  "properties": {
+                    "id": { "type": "string" },
+                    "label": { "type": "string" },
+                    "type": { "type": "string", "enum": ["text", "number", "date", "ssn", "bankRouting", "bankAccount", "checkbox", "signatureName"] },
+                    "pdfFieldName": { "type": "string" },
+                    "sensitive": { "type": "boolean" },
+                    "placeholder": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "faq": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["question", "answer"],
+        "properties": {
+          "question": { "type": "string" },
+          "answer": { "type": "string" }
+        }
+      }
+    },
+    "disclaimer": {
+      "type": "object",
+      "required": ["title", "body"],
+      "properties": {
+        "title": { "type": "string" },
+        "body": { "type": "string" }
+      }
+    }
+  }
+}

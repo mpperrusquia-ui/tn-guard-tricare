@@ -1,0 +1,50 @@
+{
+  "name": "TN Guard Tricare Helper — Design Tokens",
+  "description": "Source of truth for the coyote-brown theme. iOS wraps these in Theme.swift, Android in Theme.kt / Color.kt. Keep both in sync by hand when this file changes — it's small enough not to need codegen.",
+  "colorsLight": {
+    "primary": "#8A6E52",
+    "primaryDark": "#6E5640",
+    "accent": "#5B6B58",
+    "background": "#F7F3EC",
+    "surface": "#FFFFFF",
+    "surfaceAlt": "#EFE7DA",
+    "textPrimary": "#2B2620",
+    "textSecondary": "#6B6255",
+    "success": "#4C7A54",
+    "warning": "#B4762A",
+    "danger": "#A6423A",
+    "border": "#E1D6C4"
+  },
+  "colorsDark": {
+    "primary": "#C9A97E",
+    "primaryDark": "#A98A63",
+    "accent": "#8FA089",
+    "background": "#1C1815",
+    "surface": "#262019",
+    "surfaceAlt": "#33291F",
+    "textPrimary": "#F3EEE4",
+    "textSecondary": "#B8AB98",
+    "success": "#7FB489",
+    "warning": "#E0A85C",
+    "danger": "#E08479",
+    "border": "#3C3226"
+  },
+  "spacing": { "xs": 4, "sm": 8, "md": 16, "lg": 24, "xl": 32, "xxl": 48 },
+  "radius": { "sm": 8, "md": 16, "lg": 24, "pill": 999 },
+  "typography": {
+    "fontFamily": "system",
+    "largeTitle": { "size": 30, "weight": "bold" },
+    "title": { "size": 22, "weight": "semibold" },
+    "headline": { "size": 17, "weight": "semibold" },
+    "body": { "size": 16, "weight": "regular" },
+    "callout": { "size": 15, "weight": "regular" },
+    "caption": { "size": 13, "weight": "regular" }
+  },
+  "shadow": { "opacity": 0.08, "radius": 12, "y": 4 },
+  "notes": [
+    "No camo patterns, stencil fonts, or high-contrast tactical UI.",
+    "Cards use radius.md (16pt) with the soft shadow token.",
+    "Primary color is for main CTAs and active tab; accent (muted olive/slate) is for secondary actions and links.",
+    "Dark mode is a proper dark palette, not just an inverted light one."
+  ]
+}
