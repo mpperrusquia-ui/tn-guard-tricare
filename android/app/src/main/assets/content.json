@@ -1,0 +1,237 @@
+{
+  "contentVersion": 4,
+  "updatedAt": "2026-08-10",
+  "trs": {
+    "premiums": {
+      "memberOnlyMonthly": "57.88",
+      "memberAndFamilyMonthly": "286.66",
+      "asOfYear": 2026
+    },
+    "links": {
+      "milconnect": "https://milconnect.dmdc.osd.mil/milconnect/",
+      "bwe": "https://tricare.mil/bwe",
+      "trsOverview": "https://tricare.mil/TRS",
+      "trsEnrollmentSteps": "https://tricare.mil/TRSEnrollment",
+      "formsPage": "https://tricare.mil/PatientResources/Forms/Enrollment/TRS_TRR",
+      "whenCoverageBegins": "https://www.tricare.mil/Plans/Enroll/TRS/WhenCoverageBegins",
+      "costs": "https://tricare.mil/comparecosts",
+      "handbook": "https://tricare.mil/Publications/Handbooks/national_guard_reserve",
+      "eastRegion": "https://www.tricare.mil/East",
+      "humanaMilitary": "https://www.humanamilitary.com",
+      "findDoctor": "https://tricare.mil/finddoctor"
+    },
+    "phoneNumbers": {
+      "humanaEastLabel": "East Region (Humana Military) — covers TN",
+      "humanaEast": "8004445445",
+      "triWestLabel": "West Region (TriWest)",
+      "triWest": "8888749378"
+    },
+    "eligibility": [
+      "You're a member of the Selected Reserve (Army or Air National Guard qualifies).",
+      "You're not on active duty orders for more than 30 consecutive days.",
+      "You're not covered under the Transitional Assistance Management Program (TAMP).",
+      "You're not eligible for or enrolled in the Federal Employees Health Benefits (FEHB) Program.",
+      "Your info — and your family's — is current and correct in DEERS.",
+      "You have (or can create) a milConnect account (CAC, DS Logon/myAuth, or another approved credential)."
+    ],
+    "steps": [
+      {
+        "id": "confirm-eligibility",
+        "title": "Confirm your eligibility",
+        "body": "Log into milConnect and check via Beneficiary Web Enrollment (BWE). If you don't qualify, you generally can't complete or print the form — contact your National Guard personnel office (S1) for help."
+      },
+      {
+        "id": "purchase-coverage",
+        "title": "Purchase coverage online (preferred)",
+        "body": "Go to milConnect, log in, select Benefits → Beneficiary Web Enrollment (BWE), and follow the steps to enroll in TRICARE Reserve Select. Do NOT select FEHB if you're not a federal employee — it can block you from qualifying for TRS. Pick your requested start date. Completing this generates the Reserve Component Health Coverage Request Form (DD Form 2896-1). Make your initial premium payment as directed.",
+        "actionLabel": "Open milConnect (BWE)",
+        "actionLinkKey": "bwe"
+      },
+      {
+        "id": "coverage-begins",
+        "title": "Know when coverage begins",
+        "body": "TRS is available year-round. Your form must generally be received/postmarked by the last day of the month to secure your requested start date. Picking a date other than the 1st means a prorated premium for that partial month. Special \"no-break\" rules apply when transitioning from other TRICARE coverage (e.g. after TAMP ends or separating into the Selected Reserve) — usually a 90-day window to avoid a coverage gap."
+      },
+      {
+        "id": "recurring-payments",
+        "title": "Set up automatic recurring premium payments",
+        "body": "After your initial payment, automatic recurring payments (EFT or recurring card) are required. Missing payments can lead to suspension or disenrollment. Manage payments through your regional contractor's self-service portal (Humana Military for the East Region, which covers Tennessee)."
+      },
+      {
+        "id": "after-enrollment",
+        "title": "After you're enrolled",
+        "body": "Confirm your status in milConnect. Find TRICARE-authorized providers (network preferred for lower costs) at tricare.mil/finddoctor. No primary care manager is assigned under TRS and referrals generally aren't required, though pre-authorization may be needed for some services."
+      }
+    ]
+  },
+  "tnReimbursement": {
+    "email": "tntricare@tn.gov",
+    "monthlyDeadlineRule": "2nd Friday of every month",
+    "links": {
+      "programPage": "https://www.tn.gov/military/programs-benefits/medical-readiness-act.html",
+      "policyPdf": "https://www.tn.gov/content/dam/tn/military/medical-readiness-act/250723%20Medical%20Readiness%20Act%20Policy.pdf",
+      "enrollmentPacketPdf": "https://www.tn.gov/content/dam/tn/military/medical-readiness-act/260106%20Medical%20Readiness%20Act%20Enrollment%20and%20Supporting%20Documents.pdf",
+      "w4Pdf": "https://www.tn.gov/content/dam/tn/military/medical-readiness-act/2026%20Form%20W-4%20Employees%20Withholding%20Certificate.pdf"
+    },
+    "eligibility": [
+      "You're an actively serving traditional (drilling) TN Army or Air National Guard member.",
+      "You're eligible for and enrolled in TRICARE Reserve Select and/or the TRICARE Dental Program.",
+      "You are NOT full-time (AGR members and full-time federal technicians are not eligible).",
+      "You do not have health or dental coverage through a civilian employer (you can decline employer coverage to become eligible)."
+    ],
+    "steps": [
+      {
+        "id": "enroll-trs-first",
+        "title": "Enroll in TRS first",
+        "body": "Complete the federal TRS enrollment (and/or TRICARE Dental) and start paying the individual (member-only) premium. This program only reimburses the individual premium — not family coverage."
+      },
+      {
+        "id": "fill-enrollment",
+        "title": "Fill out the Enrollment form",
+        "body": "Your personal, unit, and EFT (direct deposit) info — every line on the real form must be filled."
+      },
+      {
+        "id": "fill-attestation",
+        "title": "Fill out the attestation form",
+        "body": "Confirms you don't receive health/dental insurance through a civilian employer."
+      },
+      {
+        "id": "fill-w4",
+        "title": "Fill out Form W-4",
+        "body": "Employee's Withholding Certificate for the reimbursement payroll process."
+      },
+      {
+        "id": "get-payment-history",
+        "title": "Get your TRICARE Payment History proof",
+        "body": "Log into the TRICARE/Humana Military portal, go to Payment History, and save/print it as a PDF. It should show your plan, paid-through dates, and amounts."
+      },
+      {
+        "id": "email-package",
+        "title": "Email the complete package",
+        "body": "Send the Enrollment form, attestation form, W-4, and TRICARE payment proof to tntricare@tn.gov."
+      },
+      {
+        "id": "monthly-resubmit",
+        "title": "Resubmit proof every month",
+        "body": "To keep receiving reimbursements, submit your prior month's TRICARE bill/payment documentation by the 2nd Friday of each month. If you later get civilian employer coverage, notify tntricare@tn.gov so reimbursements stop."
+      }
+    ],
+    "forms": [
+      {
+        "id": "enrollment",
+        "title": "Medical Readiness Act Enrollment",
+        "description": "Enclosure 2 of the official state packet — your personal info, unit, and banking (EFT) details. The real form says every line must be filled, so double-check anything you leave blank before sending.",
+        "pdfTemplate": "tn-medical-readiness-packet.pdf",
+        "fillMode": "acroform",
+        "outputPage": 1,
+        "fields": [
+          { "id": "coverageHealth", "label": "Health", "type": "checkbox", "pdfFieldName": "Check Box1" },
+          { "id": "coverageDental", "label": "Dental", "type": "checkbox", "pdfFieldName": "Check Box2" },
+          { "id": "benefitsNumber", "label": "TRICARE Benefits Number", "type": "text", "pdfFieldName": "Benefits Number", "placeholder": "If known" },
+          { "id": "lastName", "label": "Last name", "type": "text", "pdfFieldName": "Last Name" },
+          { "id": "firstName", "label": "First name", "type": "text", "pdfFieldName": "First Name" },
+          { "id": "middleInitial", "label": "MI", "type": "text", "pdfFieldName": "MI" },
+          { "id": "ssn", "label": "Social Security Number", "type": "ssn", "pdfFieldName": "SSN", "sensitive": true },
+          { "id": "mailingAddress", "label": "Mailing address", "type": "text", "pdfFieldName": "MAILING ADDRESS" },
+          { "id": "city", "label": "City", "type": "text", "pdfFieldName": "City" },
+          { "id": "county", "label": "County", "type": "text", "pdfFieldName": "County" },
+          { "id": "state", "label": "State", "type": "text", "pdfFieldName": "State" },
+          { "id": "zipCode", "label": "ZIP code", "type": "text", "pdfFieldName": "Zip Code" },
+          { "id": "cellPhone", "label": "Cell phone number", "type": "text", "pdfFieldName": "Home Phone" },
+          { "id": "workPhone", "label": "Work phone number", "type": "text", "pdfFieldName": "Work Phone" },
+          { "id": "payDate", "label": "PEBD/LES pay date or enlistment date (MM/DD/YYYY)", "type": "text", "pdfFieldName": "PEDB Date", "placeholder": "MM/DD/YYYY" },
+          { "id": "dob", "label": "Date of birth", "type": "date", "pdfFieldName": "DOB" },
+          { "id": "branch", "label": "Branch", "type": "choice", "pdfFieldName": "Branch", "options": ["ARNG", "ANG", "STATE GUARD"] },
+          { "id": "payGrade", "label": "Pay grade", "type": "choice", "pdfFieldName": "Pay Grade", "options": ["E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9", "O1", "O1E", "O2", "O2E", "O3", "O3E", "O4", "O5", "O6", "O7", "O8", "O9", "O10", "W1", "W2", "W3", "W4", "W5"] },
+          { "id": "rank", "label": "Rank", "type": "choice", "pdfFieldName": "Rank", "options": ["PVT", "AB", "PV2", "Amn", "PFC", "A1C", "SPC", "CPL", "SrA", "SGT", "SSgt", "SSG", "TSgt", "SFC", "MSgt", "MSG", "1SG", "SMSgt", "SGM", "CSM", "CMSgt", "WO1", "CW2", "CW3", "CW4", "W5", "2LT", "1LT", "CPT", "MAJ", "LTC", "COL", "BG", "MG", "LTG", "GEN", "GA"] },
+          { "id": "unit", "label": "Unit", "type": "choice", "pdfFieldName": "Unit", "options": ["JFHQ", "117 RTI", "30 TC", "35 DSD", "194 EB", "278 ACR", "118 AW", "134 AW", "164 AW", "119 CACS", "241 EIS", "1 REGT TSG", "2 REGT TSG", "3 REGT TSG", "4 REGT TSG", "61 MED TSG"] },
+          { "id": "unitCity", "label": "Unit city", "type": "text", "pdfFieldName": "Unit City" },
+          { "id": "unitZip", "label": "Unit ZIP code", "type": "text", "pdfFieldName": "Unit Zip Code" },
+          { "id": "dependencyStatus", "label": "Dependency status", "type": "choice", "pdfFieldName": "Dependancy Status", "options": ["No Dependents", "With Dependents"] },
+          { "id": "provideBanking", "label": "I'm providing my banking info below for EFT", "type": "checkbox", "pdfFieldName": "Use Mil Pay" },
+          { "id": "institution", "label": "Bank / institution", "type": "text", "pdfFieldName": "Institution" },
+          { "id": "routingNumber", "label": "Routing number", "type": "bankRouting", "pdfFieldName": "Routing #", "sensitive": true },
+          { "id": "accountNumber", "label": "Account number", "type": "bankAccount", "pdfFieldName": "Account #", "sensitive": true }
+        ]
+      },
+      {
+        "id": "attestation",
+        "title": "Attestation Form",
+        "description": "Enclosure 1 of the official state packet — states you don't receive health or dental insurance through a civilian employer. This is a flat, non-interactive page (not a real fillable PDF), so your entries are printed directly onto the real form text. The Signature line is left blank for you to sign by hand.",
+        "pdfTemplate": "tn-medical-readiness-packet.pdf",
+        "fillMode": "overlay",
+        "outputPage": 0,
+        "fields": [
+          {
+            "id": "fullName",
+            "label": "Full legal name",
+            "type": "text",
+            "overlays": [
+              { "page": 0, "x": 84, "y": 179 },
+              { "page": 0, "x": 76, "y": 483 }
+            ]
+          },
+          {
+            "id": "coverageType",
+            "label": "What coverage do you not receive through your employer?",
+            "type": "choice",
+            "options": ["Health insurance only", "Dental insurance only", "Either health or dental insurance"],
+            "overlayOptions": [
+              { "value": "Health insurance only", "page": 0, "x": 221, "y": 248.5 },
+              { "value": "Dental insurance only", "page": 0, "x": 221, "y": 262.3 },
+              { "value": "Either health or dental insurance", "page": 0, "x": 221, "y": 276.1 }
+            ]
+          },
+          {
+            "id": "attestDate",
+            "label": "Date",
+            "type": "date",
+            "overlays": [
+              { "page": 0, "x": 328, "y": 483 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w4",
+        "title": "Form W-4 (2026)",
+        "description": "Employee's Withholding Certificate, required for the reimbursement payroll process. This fills your name, SSN, and address into the real official IRS PDF (Step 1). Filing status (Step 1c), any dependents/other income/deductions (Steps 3–4), and Step 5 (Sign Here) aren't auto-filled — the IRS form doesn't expose a fillable field for your signature at all, so you'll sign and date it by hand (or with your own e-signature) after generating it. Check the filing status box yourself too, since guessing it wrong on a tax form is worse than leaving it for you to confirm.",
+        "pdfTemplate": "tn-w4-template.pdf",
+        "isPlaceholderTemplate": false,
+        "fields": [
+          { "id": "firstNameMI", "label": "First name and middle initial", "type": "text", "pdfFieldName": "f1_01[0]" },
+          { "id": "lastName", "label": "Last name", "type": "text", "pdfFieldName": "f1_02[0]" },
+          { "id": "ssn", "label": "Social Security Number", "type": "ssn", "pdfFieldName": "f1_05[0]", "sensitive": true },
+          { "id": "streetAddress", "label": "Address", "type": "text", "pdfFieldName": "f1_03[0]" },
+          { "id": "cityStateZip", "label": "City or town, state, and ZIP code", "type": "text", "pdfFieldName": "f1_04[0]" }
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Is TRICARE Open Season the same as TRS enrollment?",
+      "answer": "No. Open Season (mid-Nov to early/mid-Dec) applies to TRICARE Prime and Select. TRS has no open-enrollment window — you can purchase it any time you qualify."
+    },
+    {
+      "question": "Does the TN reimbursement cover my family's premium too?",
+      "answer": "No. It only reimburses the individual (member-only) premium you pay for TRS and/or TRICARE Dental — not family coverage."
+    },
+    {
+      "question": "What if I'm AGR or a full-time technician?",
+      "answer": "You're not eligible for the TN state reimbursement program (full-time status is excluded), though you may still be eligible for TRS itself depending on your status."
+    },
+    {
+      "question": "What happens if I miss the monthly 2nd-Friday deadline?",
+      "answer": "Your reimbursement for that period will be delayed. Submit your proof of payment as soon as possible to tntricare@tn.gov."
+    },
+    {
+      "question": "Who do I contact with eligibility questions specific to my status?",
+      "answer": "Your unit S1/personnel office, and tntricare@tn.gov for the state reimbursement program."
+    }
+  ],
+  "disclaimer": {
+    "title": "Before you get started",
+    "body": "This app is an unofficial helper built to make TRICARE Reserve Select enrollment and the TN Medical Readiness Act reimbursement program easier to navigate. It is not affiliated with or endorsed by the Department of Defense, TRICARE, Humana Military, TriWest, or the Tennessee Department of Military. Always verify current premiums, deadlines, and forms on the official sites linked in this app. This app does not transmit your personal information anywhere — data you enter stays on your device and is only shared when you choose to send it yourself (e.g. emailing a filled form)."
+  }
+}

@@ -5,3 +5,14 @@ DerivedData/
 
 # macOS
 .DS_Store
+
+# Android
+android/local.properties
+android/.gradle/
+android/app/build/
+android/build/
+android/.idea/
+android/*.iml
+android/captures/
+android/.cxx/
+

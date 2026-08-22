@@ -1,0 +1,14 @@
+<resources>
+    <color name="theme_primary_light">#8A6E52</color>
+    <color name="theme_primary_dark_light">#6E5640</color>
+    <color name="theme_accent_light">#5B6B58</color>
+    <color name="theme_background_light">#F7F3EC</color>
+    <color name="theme_surface_light">#FFFFFF</color>
+    <color name="theme_surface_alt_light">#EFE7DA</color>
+    <color name="theme_text_primary_light">#2B2620</color>
+    <color name="theme_text_secondary_light">#6B6255</color>
+    <color name="theme_success_light">#4C7A54</color>
+    <color name="theme_warning_light">#B4762A</color>
+    <color name="theme_danger_light">#A6423A</color>
+    <color name="theme_border_light">#E1D6C4</color>
+</resources>
